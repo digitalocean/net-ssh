@@ -182,7 +182,7 @@ module Net; module SSH
       consume!
       data
     end
-      
+
     # Return the next 8 bytes as a 64-bit integer (in network byte order).
     # Returns nil if there are less than 8 bytes remaining to be read in the
     # buffer.
@@ -254,6 +254,9 @@ module Net; module SSH
           key = OpenSSL::PKey::RSA.new
           key.e = read_bignum
           key.n = read_bignum
+
+        when /^ssh-ed25519$/
+          key = ED25519::PubKey.read_keyblob(self)
 
         when /^ecdsa\-sha2\-(\w*)$/
           unless defined?(OpenSSL::PKey::EC)

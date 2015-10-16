@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "lib/net/ssh/authentication/methods/publickey.rb",
     "lib/net/ssh/authentication/pageant.rb",
     "lib/net/ssh/authentication/session.rb",
+    "lib/net/ssh/authentication/ed25519.rb",
     "lib/net/ssh/buffer.rb",
     "lib/net/ssh/buffered_io.rb",
     "lib/net/ssh/config.rb",
@@ -191,6 +192,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = "2.4.6"
   s.signing_key = "/mnt/gem/net-ssh-private_key.pem"
   s.summary = "Net::SSH: a pure-Ruby implementation of the SSH2 client protocol."
+
+  s.add_dependency 'rbnacl'
 
   if s.respond_to? :specification_version then
     s.specification_version = 4

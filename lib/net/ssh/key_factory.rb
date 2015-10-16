@@ -1,5 +1,6 @@
 require 'net/ssh/transport/openssl'
 require 'net/ssh/prompt'
+require 'net/ssh/authentication/ed25519'
 
 module Net; module SSH
 
@@ -36,7 +37,7 @@ module Net; module SSH
       # whether the file describes an RSA or DSA key, and will load it
       # appropriately. The new key is returned. If the key itself is
       # encrypted (requiring a passphrase to use), the user will be
-      # prompted to enter their password unless passphrase works. 
+      # prompted to enter their password unless passphrase works.
       def load_private_key(filename, passphrase=nil, ask_passphrase=true)
         data = File.read(File.expand_path(filename))
         load_data_private_key(data, passphrase, ask_passphrase, filename)
@@ -46,7 +47,7 @@ module Net; module SSH
       # whether the file describes an RSA or DSA key, and will load it
       # appropriately. The new key is returned. If the key itself is
       # encrypted (requiring a passphrase to use), the user will be
-      # prompted to enter their password unless passphrase works. 
+      # prompted to enter their password unless passphrase works.
       def load_data_private_key(data, passphrase=nil, ask_passphrase=true, filename="")
         if OpenSSL::PKey.respond_to?(:read)
           pkey_read = true
@@ -110,10 +111,10 @@ module Net; module SSH
         blob = nil
         begin
           blob = fields.shift
-        end while !blob.nil? && !/^(ssh-(rsa|dss)|ecdsa-sha2-nistp\d+)$/.match(blob)
+        end while !blob.nil? && !/^(ssh-(rsa|dss|ed25519)|ecdsa-sha2-nistp\d+)$/.match(blob)
         blob = fields.shift
 
-        raise Net::SSH::Exception, "public key at #{filename} is not valid" if blob.nil?
+        raise Net::SSH::Exception, "public key #{'at ' + filename if filename} is not valid" if blob.nil?
 
         blob = blob.unpack("m*").first
         reader = Net::SSH::Buffer.new(blob)
