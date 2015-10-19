@@ -5,8 +5,8 @@
 # stub: net-ssh 3.0.1 ruby lib
 
 Gem::Specification.new do |s|
-  s.name = "net-ssh"
-  s.version = "3.0.1"
+  s.name = "do-net-ssh"
+  s.version = "3.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
@@ -108,7 +108,6 @@ Gem::Specification.new do |s|
     "lib/net/ssh/verifiers/secure.rb",
     "lib/net/ssh/verifiers/strict.rb",
     "lib/net/ssh/version.rb",
-    "net-ssh-public_cert.pem",
     "net-ssh.gemspec",
     "setup.rb",
     "support/arcfour_check.rb",
@@ -190,7 +189,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = Gem::Requirement.new(">= 2.0")
   s.rubyforge_project = "net-ssh"
   s.rubygems_version = "2.4.6"
-  s.signing_key = "/mnt/gem/net-ssh-private_key.pem"
   s.summary = "Net::SSH: a pure-Ruby implementation of the SSH2 client protocol."
 
   s.add_dependency 'rbnacl'
