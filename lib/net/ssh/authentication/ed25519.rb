@@ -1,4 +1,5 @@
 require 'rbnacl'
+require 'rbnacl/libsodium'
 require 'rbnacl/signatures/ed25519/verify_key'
 
 # Credit to @mfazekas for the implementation: https://github.com/net-ssh/net-ssh/pull/228
