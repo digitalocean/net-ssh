@@ -1,7 +1,3 @@
-require 'rbnacl'
-require 'rbnacl/libsodium'
-require 'rbnacl/signatures/ed25519/verify_key'
-
 # Credit to @mfazekas for the implementation: https://github.com/net-ssh/net-ssh/pull/228
 # Note: This is only written to return a fingerprint from a public key.
 module ED25519
