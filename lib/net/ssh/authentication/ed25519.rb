@@ -1,3 +1,6 @@
+require 'rbnacl/libsodium'
+require 'rbnacl/signatures/ed25519/verify_key'
+
 # Credit to @mfazekas for the implementation: https://github.com/net-ssh/net-ssh/pull/228
 # Note: This is only written to return a fingerprint from a public key.
 module ED25519
@@ -8,6 +11,15 @@ module ED25519
 
     def self.read_keyblob(buffer)
       PubKey.new(buffer.read_string)
+    end
+
+    def ssh_type
+      "ssh-ed25519"
+    end
+
+    def to_pem
+      # TODO this is not pem
+      ssh_type + Base64.encode64(@verify_key.to_bytes)
     end
 
     def to_blob

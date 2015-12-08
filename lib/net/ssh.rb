@@ -4,10 +4,6 @@ ENV['HOME'] ||= ENV['HOMEPATH'] ? "#{ENV['HOMEDRIVE']}#{ENV['HOMEPATH']}" : Dir.
 
 require 'logger'
 
-require 'rbnacl'
-require 'rbnacl/libsodium'
-require 'rbnacl/signatures/ed25519/verify_key'
-
 require 'net/ssh/config'
 require 'net/ssh/errors'
 require 'net/ssh/loggable'
